@@ -562,14 +562,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _CartItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CartItem */ "./src/app/models/CartItem.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-
 
 
 
 let Cart = class Cart {
     constructor() {
-        this.CartName = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].cartName;
+        this.CartName = 'Cart_Test';
         this.Items = [];
         this.TotalItems = 0;
         this.loadCart();
@@ -639,53 +637,6 @@ let Cart = class Cart {
         this.Total = price;
     }
     checkoutPayment(user) {
-        const params = {
-            url: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].paymentGatewayUrl,
-            options: {
-                key: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].paymentGatewayKey,
-                salt: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].paymentGatewaySalt,
-                txnid: (Math.random() * 10000000000).toFixed(0),
-                amount: this.Total,
-                productinfo: this.CartName + '_' + this.Total,
-                firstname: user.name,
-                email: user.email,
-                phone: user.contactNo,
-                surl: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseAddress + '/app/paymentStatus',
-                furl: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseAddress + '/app/paymentStatus',
-                service_provider: '',
-                hash: '',
-                udf1: this.CartId,
-                udf2: user.UserId
-            }
-        };
-        const str = params.options.key + '|' + params.options.txnid +
-            '|' + params.options.amount + '|' + params.options.productinfo +
-            '|' + params.options.txnid + '|' + params.options.firstname +
-            '|' + params.options.email + '|' + params.options.udf1 +
-            '|' + params.options.udf2 + '|||||||||' + params.options.salt;
-        params.options.hash = CryptoJS.SHA512(str).toString();
-        const form = $('<form></form');
-        form.attr('action', params.url);
-        form.attr('method', 'POST');
-        form.attr('style', 'display:none');
-        this.addFormFields(form, params.options);
-        $('body').append(form);
-        // submit form
-        this.clearCart();
-        form.submit();
-        form.remove();
-    }
-    // Adding hidden fields to form
-    addFormFields(form, data) {
-        if (data != null) {
-            $.each(data, (Name, value) => {
-                if (value != null) {
-                    const input = $('<input />').attr('type', 'hidden')
-                        .attr('Name', Name).val(value);
-                    form.append(input);
-                }
-            });
-        }
     }
 };
 Cart = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -832,12 +783,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = {
     production: false,
-    apiAddress: "http://localhost:50232/api",
-    baseAddress: "http://localhost:50234",
-    paymentGatewayUrl: "https://test.payu.in/payment",
-    paymentGatewayKey: "gtKFFx",
-    paymentGatewaySalt: "mahdi",
-    cartName: "MyCart"
+    apiAddress: 'http://localhost:50232/api',
+    baseAddress: 'http://localhost:50234'
 };
 /*
  * For easier debugging in development mode, you can import the following file

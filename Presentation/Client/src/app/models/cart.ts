@@ -19,7 +19,7 @@ export class Cart {
   CartName: string;
 
   constructor() {
-    this.CartName = environment.cartName;
+    this.CartName = 'Cart_Test';
     this.Items = [];
     this.TotalItems = 0;
 
@@ -105,62 +105,9 @@ export class Cart {
 
   checkoutPayment(user: any) {
 
-    const params = {
-      url: environment.paymentGatewayUrl,
-      options: {
-        key: environment.paymentGatewayKey,
-        salt: environment.paymentGatewaySalt,
-        txnid: (Math.random() * 10000000000).toFixed(0),
-        amount: this.Total,
-        productinfo: this.CartName + '_' + this.Total,
-        firstname: user.name,
-        email: user.email,
-        phone: user.contactNo,
-        surl: environment.baseAddress + '/app/paymentStatus',
-        furl: environment.baseAddress + '/app/paymentStatus',
-        service_provider: '',
-        hash: '',
-        udf1: this.CartId,
-        udf2: user.UserId
-      }
-    };
-
-    const str = params.options.key + '|' + params.options.txnid +
-        '|' + params.options.amount + '|' + params.options.productinfo +
-        '|' + params.options.txnid + '|' + params.options.firstname +
-        '|' + params.options.email + '|' + params.options.udf1 +
-        '|' + params.options.udf2 + '|||||||||' + params.options.salt;
-
-    params.options.hash = CryptoJS.SHA512(str).toString();
-
-    const form = $('<form></form');
-    form.attr('action', params.url);
-    form.attr('method', 'POST');
-    form.attr('style', 'display:none');
-    this.addFormFields(form, params.options);
-    $('body').append(form);
-
-    // submit form
-    this.clearCart();
-
-    form.submit();
-    form.remove();
-
-
   }
 
-  // Adding hidden fields to form
-  addFormFields(form: any, data: any) {
-    if (data != null) {
-      $.each(data,  (Name: string, value: string)  => {
-        if (value != null) {
-          const input = $('<input />').attr('type', 'hidden')
-            .attr('Name', Name).val(value);
-          form.append(input);
-        }
-      });
-    }
-  }
+  
 
 
 }

@@ -4,12 +4,8 @@
 
 export const environment = {
   production: false,
-  apiAddress: "http://localhost:50232/api",
-  baseAddress: "http://localhost:50234",
-  paymentGatewayUrl: "https://test.payu.in/payment",
-  paymentGatewayKey: "gtKFFx",
-  paymentGatewaySalt: "mahdi",
-  cartName:"MyCart"
+  apiAddress: 'http://localhost:50232/api',
+  baseAddress: 'http://localhost:50234'
 };
 
 /*
