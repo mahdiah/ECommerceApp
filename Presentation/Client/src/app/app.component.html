@@ -1,0 +1,38 @@
+<nav class="red" >
+  <div class="nav-wrapper">
+    <a [routerLink]="['/']" class="brand-logo">{{title}}</a>
+
+    <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+      <i class="material-icons">menu</i>
+    </a>
+
+    <ul class="right hide-on-med-and-down "  >
+      <li><a [routerLink]="['/']">Home</a></li>
+      <li *ngIf="cart != undefined && cart.TotalItems > 0">
+        <a class="cart_items" [routerLink]="['/cart']">
+          <i class="material-icons">shopping_cart</i>
+         <span class="new badge" >
+          {{cart.TotalItems}} items | {{ cart.Total }} €
+         </span>
+        </a>
+
+      </li>
+     
+      <li *ngIf="user != undefined && user.userId > 0"><a href="/Account/SignOut">Logout</a></li>
+      <li *ngIf="user != undefined && user.userId == 0"><a href="/Account/Login">Login</a></li>
+      <li *ngIf="user != undefined && user.userId > 0"><span class="chip">{{user.name}}</span></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="mobile-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Video</a></li>
+      <li><a href="#">Service</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+</ul>
+<div class="container">
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>

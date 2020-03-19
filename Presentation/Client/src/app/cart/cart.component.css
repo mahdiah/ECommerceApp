@@ -1,0 +1,14 @@
+
+.actions {
+  margin-top:50px;
+}
+
+.actions > p {
+  margin-bottom:15px;
+}
+
+.actions p > a {
+  margin-right: 20px;
+}
+
+

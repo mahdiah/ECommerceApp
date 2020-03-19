@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,body{
+  background: #eaebec;
+  font-family: "Open Sans", sans-serif
+}
+
+span.chip {
+  transition: background-color .3s;
+  font-size: 1rem;
+  color: #fff;
+  display: block;
+  padding: 0 15px;
+  margin-top:16px;
+  background-color: #ef5350;
+}
+
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v50/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav .brand-logo {
+  padding-left: 15px;
+}
+/* product */
+
+.card-image {
+  height: 250px;
+  max-height: 250px;
+  max-width: 100%;
+}
+
+.card-content {
+  padding: 8px !important;
+  background: #fff;
+}
+.card-content .card-title{
+	font-size:22px;
+	color:#393c45;
+}
+.card-content p{
+  font-size:15px;
+	color:#b1b1b3;
+  padding:1px 0 20px 0;
+  text-transform: lowercase;
+}
+.card-content .product-price{
+	float:right;
+	color:#48cfad;
+	font-size:18px;
+	font-weight:500;
+}
+
+.card .card-action {
+  padding: 16px 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background:rgba(72, 218, 161, 0.65);
+}
+
+.view_details{
+	position:absolute;
+	top:50%;
+	left:50%;
+	border:2px solid #fff;
+	color:#fff;
+	font-size:19px;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:700;
+	padding:10px 0;
+	width:172px;
+	opacity:0;
+	-webkit-transition: all 200ms ease-out;
+       -moz-transition: all 200ms ease-out;
+         -o-transition: all 200ms ease-out;
+            transition: all 200ms ease-out;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.view_details:hover{
+	background:#fff;
+	color:#48cfad;
+	cursor:pointer;
+
+}
+
+.card:hover .overlay {
+	opacity:1;
+}
+.card:hover .view_details{
+  opacity: 1;
+}
+
+
+

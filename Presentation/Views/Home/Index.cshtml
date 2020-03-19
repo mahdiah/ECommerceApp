@@ -1,0 +1,41 @@
+﻿@{
+	Layout = null;
+	var username = httpContextAccessor.HttpContext.User.Identity.Name ?? String.Empty;
+	var currentUser = String.IsNullOrEmpty(username) ? new User() : await userManager.FindByNameAsync(username);
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Client</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="client/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+   
+</head>
+<body>
+    <app-root></app-root>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="client/runtime.js" type="module"></script>
+    <script src="client/polyfills.js" type="module"></script>
+    <script src="client/styles.js" type="module"></script>
+    <script src="client/scripts.js" defer></script>
+    <script src="client/vendor.js" type="module"></script>
+    <script src="client/main.js" type="module"></script>
+    <script>
+
+	        var user =  {
+	            name: '@currentUser.Name',
+		        username: '@currentUser.Email',
+				contactNo: '@currentUser.PhoneNumber',
+                userId: @currentUser.Id
+	        };
+           console.log(user);
+
+    </script>
+</body>
+</html>
