@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Repository
 {
@@ -62,6 +63,48 @@ namespace Repository
 			});
 
 			base.OnModelCreating(modelBuilder);
+
+			this.SeedData(modelBuilder);
+
+		}
+
+		private void SeedData(ModelBuilder modelBuilder)
+		{
+			var userRole = new Role
+			{
+				Id = 1,
+				Name = "User",
+				Description = "End User",
+				CreatedDate = DateTime.Now
+			};
+			var adminRole = new Role
+			{
+				Id = 2,
+				Name = "Admin",
+				Description = "Administrator",
+				CreatedDate = DateTime.Now
+			};
+			modelBuilder.Entity<Role>().HasData(new Role[] { userRole, adminRole });
+
+			var adminUser = new User
+			{
+				Id = 1,
+				Name = "admin",
+				UserName = "administrator",
+				CreatedDate = DateTime.Now,
+				Email = "admin@eshop.com",
+				PhoneNumber = "123456987"
+			};
+
+			modelBuilder.Entity<User>().HasData(adminUser);
+
+			modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
+			{
+				RoleId = adminRole.Id,
+				UserId = adminUser.Id
+			});
+
+
 		}
 	}
 }
