@@ -27,6 +27,8 @@ namespace Presentation
 					Debug.WriteLine(ex.Message);
 				}
 			}
+
+			host.Run();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
